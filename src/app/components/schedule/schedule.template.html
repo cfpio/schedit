@@ -1,0 +1,28 @@
+<div class="panel panel-primary minh" style="border-radius:0px">
+  <div class="panel-heading no-radius" style="border-radius:0px">Shedule</div>
+  <div class="panel-body">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="padding-xs col-xs-{{12/schedule.rooms.length}}" ng-repeat="room in schedule.rooms">
+          <div class="panel panel-info minh">
+            <div class="panel-heading no-radius">{{room.name}}</div>
+            <div class="panel-body margin-left-wider">
+              <div ng-repeat="(index,space) in schedule.spaces">
+                <span ng-switch="index%4" class="hour-helper">
+                  <span ng-switch-when="0" >{{index/4}}h</span>
+                  <span ng-switch-when="1" class="tiny">15</span>
+                  <span ng-switch-when="2" class="tiny">30</span>
+                  <span ng-switch-when="3" class="tiny">45</span>
+                </span>
+                <div ng-show="index%4 !== 0" style="border-bottom:solid 0.5px">
+                </div>
+                <div ng-show="index%4 === 0" style="border-bottom:solid 2px">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

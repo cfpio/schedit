@@ -1,0 +1,43 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+}
+
+.thumbnail img.pull-right {
+  width: 50px;
+}
+
+.sc-container {
+  width: 800px;
+}
+
+.minh {
+  min-height: 500px;
+}
+
+.padding-xs {
+  padding:1px;
+}
+
+.hour-helper{
+  position:relative;
+  font-size: 0.6em;
+  top:9px;
+  left:-16px;
+}
+
+.tiny{
+  font-size:0.9em;
+  position:relative;
+  left:2px;
+}
+
+.margin-left-wider{
+  padding-left:20px;
+}
