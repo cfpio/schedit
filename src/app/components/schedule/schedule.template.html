@@ -1,4 +1,4 @@
-<div class="panel panel-primary minh" style="border-radius:0px">
+<div class="panel panel-primary minh schedule-container" style="border-radius:0px">
   <div class="panel-heading no-radius" style="border-radius:0px">Shedule</div>
   <div class="panel-body">
     <div class="col-xs-12">
@@ -7,13 +7,14 @@
           <div class="panel panel-info minh">
             <div class="panel-heading no-radius">{{room.name}}</div>
             <div class="panel-body margin-left-wider">
-              <div ng-repeat="(index,space) in schedule.spaces">
+              <div jqyoui-options="{hoverClass:'hover'}" drop="true" jqyoui-droppable ng-model="space" ng-repeat="(index,space) in schedule.spaces">
                 <span ng-switch="index%4" class="hour-helper">
                   <span ng-switch-when="0" >{{index/4}}h</span>
                   <span ng-switch-when="1" class="tiny">15</span>
                   <span ng-switch-when="2" class="tiny">30</span>
                   <span ng-switch-when="3" class="tiny">45</span>
                 </span>
+                <span ng-show="space.name">{{space.name | limitTo:10}}...</span>
                 <div ng-show="index%4 !== 0" style="border-bottom:solid 0.5px">
                 </div>
                 <div ng-show="index%4 === 0" style="border-bottom:solid 2px">
