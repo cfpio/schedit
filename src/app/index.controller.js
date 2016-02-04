@@ -4,6 +4,10 @@ angular.module('schedit').controller('IndexController', function($http){
    $http.get('app/schedule.json').success(function(data){
      angular.forEach(data,function(event){
        event.scheduled = false;
+       delete event.venue;
+       delete event.venue_id;
+       delete event.event_start;
+       delete event.event_end;
      })
      vm.events = data;
    });
@@ -32,7 +36,7 @@ angular.module('schedit').controller('IndexController', function($http){
        startDate: "2016-03-23",
        startHour: 7,
        endHour: 20,
-       spaceGap: 15 //in minutes
+       spaceGap: 15 //in minutes : TODO
      }
    }
 })

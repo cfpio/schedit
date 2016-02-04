@@ -7,7 +7,7 @@
           <div class="panel panel-info minh">
             <div class="panel-heading no-radius">{{room.name}}</div>
             <div class="panel-body margin-left-wider">
-              <div ng-class="{danger:!space.canDrop}" ui-on-drop="schedule.setEvent(room.spaces, index ,$data)" drag-hover-class="hover" ng-repeat="(index,space) in room.spaces">
+              <div ng-class="{danger:!space.canDrop}" ui-on-drop="schedule.setEvent(room, index ,$data)" drag-hover-class="hover" ng-repeat="(index,space) in room.spaces">
                 <span class="hour-helper">
                   <span ng-show="index%schedule.gapPerHour === 0">{{schedule.time.startHour + index/schedule.gapPerHour}}h</span>
                   <span ng-show="$index === index%schedule.gapPerHour && $index !== 0" ng-repeat="gap in schedule.gaps" class="tiny">{{gap}}</span>

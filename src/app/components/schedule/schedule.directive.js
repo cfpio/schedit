@@ -18,22 +18,22 @@ angular.module('schedit').directive('scSchedule', function(){
         for(var i=0; i<vm.gapPerHour; i++){
           vm.gaps.push(i*vm.time.spaceGap);
         }
-        console.log(vm.gaps);
         for(var j=0; j<vm.rooms.length; j++){
           var room = vm.rooms[j];
           room.spaces = [];
-          for(var i=0; i<vm.nbSpace; i++){
+          for(i=0; i<vm.nbSpace; i++){
             room.spaces.push({empty:true, canDrop:true});
           }
         }
       }
 
       var canDrop = function(list, index, nbSpace){
+          if(list.length < index+nbSpace){
+            return false
+          }
           for(var i=0; i<nbSpace; i++){
-            if(list[index+i]){
-              if(!list[index+i].empty){
-                return false;
-              }
+            if(list[index+i] && !list[index+i].empty){
+              return false;
             }
           }
           return true;
@@ -49,7 +49,7 @@ angular.module('schedit').directive('scSchedule', function(){
         }
       })
 
-      $scope.$on('ANGULAR_DRAG_END',function(event,originEvent,channel){
+      $scope.$on('ANGULAR_DRAG_END',function(){
         for(var j=0; j<vm.rooms.length; j++){
           var room = vm.rooms[j];
           for(var i=0; i<room.spaces.length; i++){
@@ -61,10 +61,23 @@ angular.module('schedit').directive('scSchedule', function(){
 
       vm.getNbSpaces = EventHelper.getNbSpaces;
 
-      vm.setEvent = function(list, index, data){
+      formatDate = function(index) {
+        var hourMin = vm.time.startHour + (index * 15)/60
+        var hour = parseInt(hourMin);
+        var min = (hourMin - hour) * 60;
+        return vm.time.startDate + " " + (hour<10 ? "0": "") + hour + ":" + (min<10 ? "0": "") + min + ":00";
+      }
+
+      vm.setEvent = function(room, index, data){
         var nbSpace = EventHelper.getNbSpaces(data);
+        var list = room.spaces;
+        data.scheduled = true;
+        data.venue = room.name;
+        data.venue_id = room.id;
+        data.event_start = formatDate(index);
+        data.event_end = formatDate(index + EventHelper.getNbSpaces(data));
+        console.log(data);
         for(var i=0; i<nbSpace; i++){
-          data.scheduled = true;
           list[index+i].event = data;
           list[index+i].empty = false;
         }

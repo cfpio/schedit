@@ -16,6 +16,7 @@ angular.module('schedit').service('EventHelper', function(){
   }
 
   service.getNbSpaces = function(event){
+    var result;
     if(service.spaceMapping[event['event_type']]){
       result = service.spaceMapping[event['event_type']]/service.spaceGap;
     }else{
@@ -30,6 +31,10 @@ angular.module('schedit').service('EventHelper', function(){
     angular.forEach(service.events,function(event){
       if(event.id === updatedEvent.id){
         event.scheduled = updatedEvent.scheduled;
+        event.venue = updatedEvent.venue;
+        event.venue_id = updatedEvent.venue_id;
+        event.event_start = updatedEvent.event_start;
+        event.event_end = updatedEvent.event_end;
       }
     })
   }
