@@ -1,18 +1,14 @@
 angular.module('schedit').directive('scEventList', function(){
   return {
     templateUrl: 'app/components/eventList/eventList.template.html',
-    scope:{
-      events: '=scEvents'
-    },
+    scope:{},
     bindToController:true,
     controllerAs:'list',
-    controller:function($scope){
+    controller:function($scope, EventHelper){
       var vm = this;
-      $scope.$watch(function(){
-        return vm.events;
-      }, function(){
-        console.log(vm);
-      })
+      vm.events = EventHelper.events;
+      vm.spaceGap = EventHelper.spaceGap;
+      vm.getNbSpaces = EventHelper.getNbSpaces;
     }
   }
 })

@@ -7,17 +7,15 @@
           <div class="panel panel-info minh">
             <div class="panel-heading no-radius">{{room.name}}</div>
             <div class="panel-body margin-left-wider">
-              <div jqyoui-options="{hoverClass:'hover'}" drop="true" jqyoui-droppable ng-model="space" ng-repeat="(index,space) in schedule.spaces">
-                <span ng-switch="index%4" class="hour-helper">
-                  <span ng-switch-when="0" >{{index/4}}h</span>
-                  <span ng-switch-when="1" class="tiny">15</span>
-                  <span ng-switch-when="2" class="tiny">30</span>
-                  <span ng-switch-when="3" class="tiny">45</span>
+              <div ng-class="{danger:!space.canDrop}" ui-on-drop="schedule.setEvent(room.spaces, index ,$data)" drag-hover-class="hover" ng-repeat="(index,space) in room.spaces">
+                <span class="hour-helper">
+                  <span ng-show="index%schedule.gapPerHour === 0">{{schedule.time.startHour + index/schedule.gapPerHour}}h</span>
+                  <span ng-show="$index === index%schedule.gapPerHour && $index !== 0" ng-repeat="gap in schedule.gaps" class="tiny">{{gap}}</span>
                 </span>
-                <span ng-show="space.name">{{space.name | limitTo:10}}...</span>
-                <div ng-show="index%4 !== 0" style="border-bottom:solid 0.5px">
+                <span ng-show="space.event.name">{{space.event.name | limitTo:10}}...</span>
+                <div class="schedule-spacer" ng-show="index%schedule.gapPerHour !== 0" style="border-bottom:solid 0.5px">
                 </div>
-                <div ng-show="index%4 === 0" style="border-bottom:solid 2px">
+                <div class="schedule-spacer" ng-show="index%schedule.gapPerHour === 0" style="border-bottom:solid 2px">
                 </div>
               </div>
             </div>

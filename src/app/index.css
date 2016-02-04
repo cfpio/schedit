@@ -28,7 +28,7 @@
 .hour-helper{
   position:relative;
   font-size: 0.6em;
-  top:9px;
+  top:-13px;
   left:-16px;
 }
 
@@ -55,4 +55,13 @@
 
 .hover{
   background-color:#CCC;
+}
+
+.danger{
+  background-color:#FFBDBD;
+}
+
+.schedule-spacer{
+  position:relative;
+  top:-21.6px;
 }

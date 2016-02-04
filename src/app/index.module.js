@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('schedit', ['ngDragDrop']);
+    .module('schedit', ['ang-drag-drop']);
 
 })();

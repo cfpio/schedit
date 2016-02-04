@@ -7,12 +7,12 @@ angular.module('schedit').directive('scSchedit', function(){
     },
     bindToController:true,
     controllerAs:'schedit',
-    controller:function($scope){
+    controller:function($scope, EventHelper){
       var vm = this;
       $scope.$watch(function(){
         return vm.events;
       }, function(){
-        console.log(vm);
+        EventHelper.events = vm.events;
       })
     }
   }

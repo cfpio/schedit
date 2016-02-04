@@ -1,7 +1,10 @@
 angular.module('schedit').controller('IndexController', function($http){
    var vm = this;
 
-   $http.get('app/shedule.json').success(function(data){
+   $http.get('app/schedule.json').success(function(data){
+     angular.forEach(data,function(event){
+       event.scheduled = false;
+     })
      vm.events = data;
    });
 
@@ -25,6 +28,11 @@ angular.module('schedit').controller('IndexController', function($http){
        id:6,
        name:'Atelier2'
      }],
-     nbSpace:96,
+     time:{
+       startDate: "2016-03-23",
+       startHour: 7,
+       endHour: 20,
+       spaceGap: 15 //in minutes
+     }
    }
 })

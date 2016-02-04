@@ -1,8 +1,21 @@
 <div class="panel panel-primary minh" style="border-radius:0px">
   <div class="panel-heading no-radius" style="border-radius:0px">Events</div>
   <div class="panel-body">
-    <div drag="true" ng-model="event" jqyoui-options="{revert:'invalid'}" jqyoui-draggable="{animated:true}" ng-hide="!event.name" ng-repeat="event in list.events" class="panel panel-primary event">
-      <div class="panel-heading no-radius">{{event.name}}</div>
+    <div class="row">
+      <div class="col-xs-12">
+        <input class="form-control" style="margin-bottom:10px;" type="text" ng-model="list.filter" placeholder="Filter by name">
+        <select style="margin-bottom:10px;" type="text" ng-model="list.status">
+          <option value="">All</option>
+          <option value="true">Sheduled</option>
+          <option selected="selected" value="false">Not sheduled</option>
+        </select>
+        <span>Filter by status</span>
+      </div>
+      <div class="col-xs-12">
+        <div  ng-repeat="event in list.events | filter:{name:list.filter, scheduled:list.status}" class="panel event" ng-class="{'panel-primary':!event.scheduled, 'panel-success':event.scheduled}">
+          <div on-drop-success="list.dropSuccess(event)" ui-draggable="true" drag="event" class="panel-heading no-radius">{{list.getNbSpaces(event)*list.spaceGap}}min - {{event.name}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
