@@ -22,7 +22,7 @@ angular.module('schedit').directive('scSchedule', function(){
           var room = vm.rooms[j];
           room.spaces = [];
           for(i=0; i<vm.nbSpace; i++){
-            room.spaces.push({empty:true, canDrop:true});
+            room.spaces.push({empty:true, canDrop:true, first:true});
           }
         }
       }
@@ -68,6 +68,51 @@ angular.module('schedit').directive('scSchedule', function(){
         return vm.time.startDate + " " + (hour<10 ? "0": "") + hour + ":" + (min<10 ? "0": "") + min + ":00";
       }
 
+      vm.getColor = function(event){
+        if(event){
+          return EventHelper.getColor(event);
+        }
+      }
+
+      vm.clearEvent = function(list, index){
+        var data = list[index].event;
+        var nbSpace = EventHelper.getNbSpaces(list[index].event);
+        data.scheduled = false;
+        data.venue = undefined;
+        data.venue_id = undefined;
+        data.event_start = undefined;
+        data.event_end = undefined;
+        EventHelper.updateEvent(data);
+        console.log(data);
+        for(var i=0; i<nbSpace; i++){
+          list[index+i].first = true;
+          list[index+i].event = undefined;
+          list[index+i].empty = true;
+        }
+
+      }
+
+      vm.getSpaceClasses = function(space, index){
+
+        var classes = "";
+
+        if(!space.canDrop){
+          classes+=" danger"
+        }
+        if(space.first){
+          classes+=" add-top";
+        }
+        if(space.event){
+          classes+=" with-event";
+        }
+        if(index%vm.gapPerHour === 0){
+          classes+=" big-top";
+        }else{
+          classes+=" thin-top";
+        }
+        return classes;
+      }
+
       vm.setEvent = function(room, index, data){
         var nbSpace = EventHelper.getNbSpaces(data);
         var list = room.spaces;
@@ -78,6 +123,7 @@ angular.module('schedit').directive('scSchedule', function(){
         data.event_end = formatDate(index + EventHelper.getNbSpaces(data));
         console.log(data);
         for(var i=0; i<nbSpace; i++){
+          list[index+i].first = (i===0);
           list[index+i].event = data;
           list[index+i].empty = false;
         }

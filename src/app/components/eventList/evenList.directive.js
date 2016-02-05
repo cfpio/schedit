@@ -9,6 +9,13 @@ angular.module('schedit').directive('scEventList', function(){
       vm.events = EventHelper.events;
       vm.spaceGap = EventHelper.spaceGap;
       vm.getNbSpaces = EventHelper.getNbSpaces;
+      vm.exportAsJson = function(){
+        var jsonString = EventHelper.getEventsAsJson();
+        var data = "text/json;charset=utf-8," + encodeURIComponent(jsonString);
+        var elem = angular.element();
+        console.log(elem);
+        console.log(jsonString);
+      }
     }
   }
 })

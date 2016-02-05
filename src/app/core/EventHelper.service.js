@@ -15,6 +15,19 @@ angular.module('schedit').service('EventHelper', function(){
     "default":30
   }
 
+  service.colorMapping = {
+    "Docker Docker Docker":"#2F687B",
+    "Black Belt Tech":"#3E4089",
+    "Ecosystem":"#5E3685",
+    "Pre-Registration, Registration":"#9B3874",
+    "Registration":"#C55647",
+    "Party":"#C58C47",
+    "Wild Cards":"#C5A847",
+    "Use Case":"#C5C247",
+    "break":"#8BB642",
+    "default":"#338C5A"
+  }
+
   service.getNbSpaces = function(event){
     var result;
     if(service.spaceMapping[event['event_type']]){
@@ -25,7 +38,22 @@ angular.module('schedit').service('EventHelper', function(){
     return result;
   }
 
+  service.getColor = function(event){
+      var result;
+      if(service.colorMapping[event['event_type']]){
+        result = service.colorMapping[event['event_type']];
+      }else{
+        result = service.colorMapping["default"];
+      }
+      return result;
+  }
+
   service.events = {};
+
+  service.getEventsAsJson = function(){
+    var json = angular.copy(service.events);
+    return JSON.stringify(json);
+  }
 
   service.updateEvent = function(updatedEvent){
     angular.forEach(service.events,function(event){

@@ -10,6 +10,7 @@
           <option selected="selected" value="false">Not sheduled</option>
         </select>
         <span>Filter by status</span>
+        <button class="btn btn-primary btn-classy btn-xs" ng-click="list.exportAsJson()">Export as json</button>
       </div>
       <div class="col-xs-12">
         <div  ng-repeat="event in list.events | filter:{name:list.filter, scheduled:list.status}" class="panel event" ng-class="{'panel-primary':!event.scheduled, 'panel-success':event.scheduled}">
