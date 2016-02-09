@@ -1,4 +1,4 @@
-# shedit
+# schedit
 WYSIWYG Scheduler.
 
 ## Usage
