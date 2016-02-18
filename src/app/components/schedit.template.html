@@ -23,7 +23,7 @@
           9h-10h Accueil/Café
         </td>
       </tr>
-      <tr>
+      <tr id="slot1">
         <td class="slot-container no-border" ng-repeat="room in schedit.options.rooms">
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day1.slot1" style="height:{{100/room.day1.slot1.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
@@ -35,7 +35,7 @@
           12h-13h30 Pause déjeuner
         </td>
       </tr>
-      <tr>
+      <tr id="slot2">
         <td class="no-border slot-container"  ng-repeat="room in schedit.options.rooms" >
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day1.slot2" style="height:{{100/room.day1.slot2.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
@@ -47,7 +47,7 @@
           15h30-16h Pause café
         </td>
       </tr>
-      <tr>
+      <tr id="slot3">
         <td class="no-border slot-container"  ng-repeat="room in schedit.options.rooms" >
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day1.slot3" style="height:{{100/room.day1.slot3.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
@@ -79,14 +79,14 @@
           10h-10h10 Pause Café
         </td>
       </tr>
-      <tr>
+      <tr id="slot4">
         <td class="slot-container no-border" ng-repeat="room in schedit.options.rooms">
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day2.slot4" style="height:{{100/room.day2.slot4.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
           </div>
         </td>
       </tr>
-      <tr>
+      <tr id="slot5">
         <td colspan="2">
           12h30-13h30 Pause déjeuner
         </td>
@@ -96,7 +96,7 @@
           </div>
         </td>
       </tr>
-      <tr>
+      <tr id="slot6">
         <td class="no-border slot-container"  ng-repeat="room in schedit.options.rooms" >
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day2.slot6" style="height:{{100/room.day2.slot6.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
@@ -108,7 +108,7 @@
           15h30-16 Pause café
         </td>
       </tr>
-      <tr>
+      <tr id="slot7">
         <td class="no-border slot-container"  ng-repeat="room in schedit.options.rooms" >
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day2.slot7" style="height:{{100/room.day2.slot7.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
@@ -140,14 +140,14 @@
           10h-10h10 Pause Café
         </td>
       </tr>
-      <tr>
+      <tr id="slot8">
         <td class="slot-container no-border" ng-repeat="room in schedit.options.rooms">
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day3.slot8" style="height:{{100/room.day3.slot8.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
           </div>
         </td>
       </tr>
-      <tr>
+      <tr id="slot9">
         <td colspan="2">
           12h30-13h30 Pause déjeuner
         </td>
@@ -157,7 +157,7 @@
           </div>
         </td>
       </tr>
-      <tr>
+      <tr id="slot10">
         <td class="no-border slot-container"  ng-repeat="room in schedit.options.rooms" >
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day3.slot10" style="height:{{100/room.day3.slot10.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>
@@ -169,7 +169,7 @@
           15h30-16 Pause café
         </td>
       </tr>
-      <tr>
+      <tr id="slot11">
         <td class="no-border slot-container"  ng-repeat="room in schedit.options.rooms" >
           <div ng-class="{selected:eventSlot === schedit.selectedSlot}" class="event-slot" ng-repeat="eventSlot in room.day3.slot11" style="height:{{100/room.day3.slot11.length}}%">
             <span class="event-name">{{eventSlot.conf.name}}</span>

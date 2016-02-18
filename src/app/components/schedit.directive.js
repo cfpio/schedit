@@ -1,4 +1,4 @@
-angular.module('schedit').directive('scSchedit', function(){
+angular.module('schedit').directive('scSchedit', function($anchorScroll){
   return {
     templateUrl: 'app/components/schedit.template.html',
     scope:{
@@ -101,6 +101,7 @@ angular.module('schedit').directive('scSchedit', function(){
             console.log(''+slot.start+' '+time);
             if(slot.start == time){
               found = slot;
+              $anchorScroll(key);
             }
           })
         }
