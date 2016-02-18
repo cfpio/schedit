@@ -2,9 +2,6 @@ angular.module('schedit').controller('IndexController', function($http){
    var vm = this;
 
    $http.get('app/schedule.json').success(function(data){
-     angular.forEach(data,function(event){
-       event.scheduled = false;
-     })
      vm.events = data;
    });
 
