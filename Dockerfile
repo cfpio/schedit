@@ -1,10 +1,26 @@
-FROM monostream/nodejs-gulp-bower
+FROM node:6.8.0
 
-WORKDIR /workplace
-RUN git clone https://github.com/Okazari/schedit.git
-WORKDIR /workplace/schedit
-RUN npm install; exit 0
-RUN bower install
+MAINTAINER team@breizhcamp.org
 
-CMD ["gulp", "serve"]
-EXPOSE 3000
+WORKDIR /work
+
+ADD package.json /work/
+RUN npm install
+
+CMD mkdir bower_components
+ADD .bowerrc /work/
+ADD bower.json /work/
+RUN npm install -g bower
+RUN bower --allow-root install
+
+ADD / /work
+
+RUN ls -al node_modules
+RUN ls -al bower_components
+RUN npm install -g gulp
+RUN gulp build
+
+RUN mkdir /www
+RUN mv /work/dist /www/scheduler
+
+VOLUME /www/scheduler
