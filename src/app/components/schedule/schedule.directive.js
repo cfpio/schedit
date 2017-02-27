@@ -3,6 +3,7 @@ angular.module('schedit').directive('scSchedule', function(){
     templateUrl: 'app/components/schedule/schedule.template.html',
     scope:{
       rooms: '=scRooms',
+      days: '=scDays',
       time: '=scTime'
     },
     bindToController:true,

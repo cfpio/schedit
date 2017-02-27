@@ -31,6 +31,7 @@ angular.module('schedit').controller('IndexController', function($http){
        id:5,
        name:'Lab'
      }],
+     days: ['Day1', 'Day2', 'Day3'],
      time:{
        startDate: "2017-04-19",
        startHour: 8,
