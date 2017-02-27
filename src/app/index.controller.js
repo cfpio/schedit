@@ -1,7 +1,7 @@
 angular.module('schedit').controller('IndexController', function($http){
    var vm = this;
 
-   $http.get('https://api.cfp.io/v0/admin/sessions/export/sched.json?states=CONFIRMED').success(function(data){
+   $http.get('https://api.cfp.io/v0/admin/sessions/export/sched.json?states=ACCEPTED').success(function(data){
      angular.forEach(data,function(event){
        event.scheduled = false;
        delete event.venue;
