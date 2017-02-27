@@ -9,8 +9,9 @@ angular.module('schedit').controller('IndexController', function($http){
        delete event.venue_id;
        delete event.event_start;
        delete event.event_end;
-     })
-     Array.prototype.push.apply(vm.events, data);
+
+       vm.events.push(event);
+     });
    });
 
    vm.scheduleOptions = {
@@ -37,4 +38,4 @@ angular.module('schedit').controller('IndexController', function($http){
        spaceGap: 15 //in minutes : TODO
      }
    }
-})
+});
