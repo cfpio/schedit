@@ -7,7 +7,6 @@ WORKDIR /work
 ADD package.json /work/
 RUN npm install
 
-CMD mkdir bower_components
 ADD .bowerrc /work/
 ADD bower.json /work/
 RUN npm install -g bower
@@ -24,3 +23,4 @@ RUN mkdir /www
 RUN mv /work/dist /www/scheduler
 
 VOLUME /www/scheduler
+CMD /bin/true
