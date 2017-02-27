@@ -3,7 +3,7 @@
   <div class="panel-body">
     <div class="col-xs-12">
       <div class="row">
-        <div class="padding-xs col-xs-{{12/schedule.rooms.length}}" ng-repeat="room in schedule.rooms">
+        <div class="padding-xs col-xs-{{schedule.floor(12/schedule.rooms.length)}}" ng-repeat="room in schedule.rooms">
           <div class="panel panel-info minh">
             <div class="panel-heading no-radius">{{room.name}}</div>
             <div class="panel-body margin-left-wider">

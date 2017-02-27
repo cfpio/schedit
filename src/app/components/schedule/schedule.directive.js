@@ -10,6 +10,7 @@ angular.module('schedit').directive('scSchedule', function(){
     controller:function($scope,EventHelper){
       var vm = this;
       EventHelper.spaceGap = vm.time.spaceGap;
+      vm.floor = Math.floor;
 
       var initSchedule = function(){
         vm.nbSpace = ((24 - vm.time.startHour - (24 - vm.time.endHour))*60) / vm.time.spaceGap;
