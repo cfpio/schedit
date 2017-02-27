@@ -19,13 +19,15 @@ angular.module('schedit').directive('scSchedit', function($anchorScroll){
         if(vm.input === "export"){
           vm.exportSchedule();
           console.log('export');
-        }else if(vm.input[0] != 9){
+        }else if(vm.input.length == 13){
           vm.room = vm.findRoom(vm.input);
+          console.log(vm.room);
           vm.day = vm.input[0];
           vm.venue = vm.input[1];
           vm.selectedSlot = vm.findSlot(vm.input, vm.room);
         }else{
-          var id = parseInt(vm.input.slice(1,6));
+            console.log("input: " + vm.input);
+          var id = parseInt(vm.input.slice(1,7));
           vm.selectedConf = vm.getConfById(id);
           console.log(vm.selectedConf);
         }
@@ -109,8 +111,9 @@ angular.module('schedit').directive('scSchedit', function($anchorScroll){
       }
 
       vm.getConfById = function(id){
+          console.log(vm.events);
         for(var i=0; i<vm.events.length; i++){
-          if(vm.events[i].id === id){
+          if(vm.events[i].id == id){
             return vm.events[i];
           }
         }
