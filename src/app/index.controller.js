@@ -1,6 +1,6 @@
 angular.module('schedit').controller('IndexController', function($http){
    var vm = this;
-  vm.events = [];
+   vm.events = [];
 
    $http.get('https://api.cfp.io/v0/admin/sessions/export/sched.json?states=ACCEPTED').success(function(data){
      angular.forEach(data,function(event){
@@ -16,27 +16,24 @@ angular.module('schedit').controller('IndexController', function($http){
    vm.scheduleOptions = {
      rooms: [{
        id:1,
-       name:'Amphi1'
+       name:'RoomA'
      },{
        id:2,
-       name:'Amphi2'
+       name:'RoomB'
      },{
        id:3,
-       name:'Amphi3'
+       name:'RoomC'
      },{
        id:4,
-       name:'Amphi4'
+       name:'RoomD'
      },{
        id:5,
-       name:'Atelier1'
-     },{
-       id:6,
-       name:'Atelier2'
+       name:'Lab'
      }],
      time:{
-       startDate: "2016-03-23",
-       startHour: 7,
-       endHour: 20,
+       startDate: "2017-04-19",
+       startHour: 8,
+       endHour: 21,
        spaceGap: 15 //in minutes : TODO
      }
    }
