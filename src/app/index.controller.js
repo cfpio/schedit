@@ -1,5 +1,6 @@
 angular.module('schedit').controller('IndexController', function($http){
    var vm = this;
+  vm.events = [];
 
    $http.get('https://api.cfp.io/v0/admin/sessions/export/sched.json?states=ACCEPTED').success(function(data){
      angular.forEach(data,function(event){
@@ -9,7 +10,7 @@ angular.module('schedit').controller('IndexController', function($http){
        delete event.event_start;
        delete event.event_end;
      })
-     vm.events = data;
+     Array.prototype.push.apply(vm.events, data);
    });
 
    vm.scheduleOptions = {
