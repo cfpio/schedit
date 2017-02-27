@@ -48,7 +48,7 @@ angular.module('schedit').service('EventHelper', function(){
       return result;
   }
 
-  service.events = {};
+  service.events = [];
 
   service.getEventsAsJson = function(){
     var json = angular.copy(service.events);
