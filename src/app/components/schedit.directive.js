@@ -11,9 +11,9 @@ angular.module('schedit').directive('scSchedit', function(){
       var vm = this;
       $scope.$watch(function(){
         return vm.events;
-      }, function(){
-        EventHelper.events = vm.events;
-      })
+      }, function(newEvents){
+        EventHelper.events = newEvents;
+      }, true)
     }
   }
 })
