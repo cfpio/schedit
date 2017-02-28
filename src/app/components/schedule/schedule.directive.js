@@ -8,7 +8,7 @@ angular.module('schedit').directive('scSchedule', function(){
     },
     bindToController:true,
     controllerAs:'schedule',
-    controller:function($scope,EventHelper){
+    controller: function($scope, EventHelper){
       var vm = this;
       EventHelper.spaceGap = vm.time.spaceGap;
       vm.floor = Math.floor;
@@ -63,7 +63,7 @@ angular.module('schedit').directive('scSchedule', function(){
 
       vm.getNbSpaces = EventHelper.getNbSpaces;
 
-      formatDate = function(index) {
+      var formatDate = function(index) {
         var hourMin = vm.time.startHour + (index * 15)/60
         var hour = parseInt(hourMin);
         var min = (hourMin - hour) * 60;
@@ -132,7 +132,13 @@ angular.module('schedit').directive('scSchedule', function(){
         EventHelper.updateEvent(data);
       }
 
-      initSchedule();
+      $scope.$watch(function(){
+        return vm.rooms;
+      }, initSchedule, true)
+
+      $scope.$watch(function(){
+        return vm.time;
+      }, initSchedule, true)
     }
   }
 })

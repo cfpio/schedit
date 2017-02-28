@@ -1,4 +1,4 @@
-angular.module('schedit').controller('IndexController', function($http){
+angular.module('schedit').controller('IndexController', function(TalkService, RoomService, EventService){
   var vm = this;
   vm.events = [];
   vm.scheduleOptions = {
@@ -12,26 +12,26 @@ angular.module('schedit').controller('IndexController', function($http){
     }
   }
 
-  $http.get('https://api.cfp.io/v0/admin/sessions/export/sched.json?states=ACCEPTED,CONFIRMED').success(function(data){
-    angular.forEach(data,function(event){
+  TalkService.getAcceptedOrConfirmed().success(function(data){
+    var cleanedData = data.forEach(function(event){
       console.log("event="+event);
       event.scheduled = false;
       delete event.venue;
       delete event.venue_id;
       delete event.event_start;
       delete event.event_end;
-
-      vm.events.push(event);
+      return event
     });
+    vm.events = cleanedData
   });
 
-  $http.get('https://api.cfp.io/v0/rooms').success(function(data){
-    console.log("rooms="+data);
-    vm.scheduleOptions.rooms.push(data);
+  RoomService.getRooms().success(function(data){
+    console.log("rooms=", data);
+    vm.scheduleOptions.rooms = data;
   });
 
 
-  $http.get('https://api.cfp.io/v0/application').success(function(data){
+  EventService.getEvent().success(function(data){
     vm.scheduleOptions.time.startDate = data.date;
     console.log("startDate="+data.date + " days="+data.duration);
     for (i = 0; i < data.duration; i++) {
